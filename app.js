@@ -7,6 +7,7 @@ const {
   JAMBONES_CLUSTER_ID,
   JAMBONZ_CLEANUP_INTERVAL_MINS,
   getCleanupIntervalMins,
+  getCallCleanupIntervalMins,
   K8S,
   NODE_ENV,
   checkEnvs,
@@ -140,7 +141,7 @@ function handle(signal) {
 }
 
 if (JAMBONZ_CLEANUP_INTERVAL_MINS) {
-  const {clearFiles} = require('./lib/utils/cron-jobs');
+  const {clearFiles, clearChannels} = require('./lib/utils/cron-jobs');
 
   /* cleanup orphaned files or channels every so often */
   setInterval(async() => {
@@ -150,6 +151,13 @@ if (JAMBONZ_CLEANUP_INTERVAL_MINS) {
       logger.error({err}, 'app.js: error clearing files');
     }
   }, getCleanupIntervalMins());
+  setInterval(async() => {
+    try {
+      await clearChannels();
+    } catch (err) {
+      logger.error({err}, 'app.js: error clearing calls');
+    }
+  }, getCallCleanupIntervalMins());
 }
 
 module.exports = {srf, logger, disconnect};
