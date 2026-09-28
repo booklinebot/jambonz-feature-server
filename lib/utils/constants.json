@@ -147,6 +147,7 @@
     "Translation": "speechmatics_transcribe::translation",
     "Info": "speechmatics_transcribe::info",
     "RecognitionStarted": "speechmatics_transcribe::recognition_started",
+    "EndOfUtterance": "speechmatics_transcribe::end_of_utterance",
     "ConnectFailure": "speechmatics_transcribe::connect_failed",
     "Connect": "speechmatics_transcribe::connect",
     "Error": "speechmatics_transcribe::error"
