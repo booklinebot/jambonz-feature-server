@@ -6,6 +6,7 @@ require('./http-requestor-unit-test');
 require('./unit-tests');
 require('./gather-timeout-unit-test');
 require('./speechmatics-consolidate-unit-test');
+require('./action-hook-delay-unit-test');
 require('./docker_start');
 require('./create-test-db');
 require('./account-validation-tests');
